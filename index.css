@@ -419,7 +419,7 @@ form b{
 
 /* --------------doctor badge ---------------- */
 td {
-  vertical-align: top; /* keeps content aligned nicely */
+  vertical-align: top; 
   padding: 4px;
   width: 10%;
 }
@@ -427,12 +427,11 @@ td {
 .doctor-badge{
   display: block;
   height: 30px;
-  width:100%;
   background-color: green;
   color: white;
   font-size: 10px;
   text-align: center;
-  line-height: 20px; /* vertical center text */
+  line-height: 20px; 
   border-radius: 3px;
   margin-top: 2px;
   overflow: hidden;
