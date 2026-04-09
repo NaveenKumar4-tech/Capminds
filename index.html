@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <title> Capminds Appointment </title>
+</head>
+<body>
+    <div class="container">
+        <!-- ---------nav bar ------------- -->
+        <nav>
+            <img src="./Capminds logo 4.png" class="logo"  alt="capminds" />
+            <button id="book"><img src="./Vector.png" alt="plus"><b>Book Appointment</b></button>
+
+        </nav>
+
+        <!-- ---------------inner container--------------- -->
+        <div class="inner-container">
+            <!-- -------------sidebar section -------- -->
+            <section class="sidebar" id="sidebar">
+                <button id="arrow" class="nav-btn"> <img src="./material-symbols_navigate-next.png" alt="arrow"></button>
+                <button id="icon1" class="nav-btn"><img src="./calendar_today_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png" alt="calender"/> <b id="nav1">Calendar</b></button>
+                <button id="icon2" class="nav-btn"><img src="./dashboard_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png" alt="dashboard"><b id="nav2">Dashboard</b></button>
+            </section>
+
+            <!-- -----------calender section -------------- -->
+            <article class="calender-column" >
+                
+                <div class="calender-show" id="calender-show">
+                    <div class="date-show">
+                        <div class="date-part">
+                            <button id="btn1"><img src="./chevron_left.png" /></button>
+                            <span class="current-date"> <p id="today"><p id="month">,</p><p id="year"></p></p></span>
+                            <button id="btn2"><img src="./chevron_right.png" /></button>
+                            <button onclick="TodayDate()"><p>Today </p></button>
+                            <select>
+                                <option>Month</option>
+                                <option>Week</option>
+                                <option>Days</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- ----------doctor name ------------- -->
+                    <div class="docname">    
+                        <p> James Mary</p>
+                    </div>
+                    <div class="table-scroll">
+                     <div class="table-contents">   
+                    <div class="week">                       
+                       <p>SUNDAY</p>
+                        <p>MONDAY</p>
+                        <p>TUESDAY</p>
+                        <p>WEDNESDAY</p>
+                        <p>THURSDAY</p>
+                        <p>FRIDAY</p>
+                        <p>SATURDAY</p>
+                    </div>
+                    <table>
+                        <tbody id="calender">
+                        </tbody>
+                            
+                    </table>
+                </div>
+                </div>
+                </div>
+
+        <!-- ---------------appointment details-------------------- -->
+            <main class="appointment-details" id="appointment-details">
+                <h3>Practice Dashboard</h3>
+                <div class="search-buttons">
+                    <div>
+                    <img src="./search 1.png">
+                    <input type="text" id="search-patient" placeholder="Patient Search">
+                    </div> 
+                    <div>
+                    <img src="./search 1.png">
+                    <input type="text" id="search-doctor" placeholder="Doctor Search">
+                    </div>
+                    <input type="date" id="from-date">
+                    <input type="date" id="to-date">
+                    <button class="update" id="filter-btn">Update</button>
+                </div>
+                <!-- ------------table contents----------- -->
+            <div class="table-scroll">
+                <div class="table-contents">
+                <table>
+                    <th class="appointment">Appointment Details</th>
+                    <tr class="col">
+                        <th><p>Patient</p></th>
+                        <th><p>Doctor</p></th>
+                        <th><p>Hospital</p></th>
+                        <th><p>Speciality</p></th>
+                        <th><p>Select Date</p></th>
+                        <th><p>Select Time</p></th>
+                        <th><p>Reason</p></th>
+                        <th><p> Action</p></th>
+                    </tr>
+                    <tbody id="tablebody">
+
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            </main>
+
+            </article>
+
+        </div>
+
+        <!-- --------appointment form ------------- -->
+                <!-- ------------ background effect -------------------- -->
+                <div id="overlay" class="overlay"></div>
+                
+                    <form class="appointment-form" id="appointment-form">
+                    <b>Schedule Appointment</b>
+                    <button id="close" type="button"> <img src="./close.png" alt="close"></button>
+                    <!-- -----form input boxes ------------ -->
+                    <div class="form">
+                   
+                    <div>
+                        <img src="./users.png"/>
+                        <input type="text" id="name" placeholder="Patient Name"/>
+                    </div>
+
+                    <div>
+                        <img src="./users.png"/>
+                        <select id="doc-name">
+                            <option value="">Select Doctor</option>
+                            <option> John - Dermatology </option>
+                            <option> David - Cardiology </option>
+                            <option> Harry - Neurology </option>
+                            <option> Steve - General </option>
+                        </select> 
+                    </div>
+
+                    <div>
+                        <img src="./Location pin.png"/>
+                        <select id="hospital">
+                             <option value="">Select Hospital</option>
+                            <option> UltraCare </option>
+                            <option> Salus Centre</option>
+                            <option> Rela Special Care </option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <img src="./fontisto_doctor.png"/>
+                        <select id="speciality">
+                            <option value="">Select Speciality</option>
+                            <option> Dermatology </option>
+                            <option> Neurology </option>
+                            <option> Cardiology </option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <img src="./calendar_today_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.png"/>
+                        <input type="date" id="date" placeholder="Select Date"/>
+                    </div>
+
+                    <div>
+                        <img src="./Access time.png"/>
+                        <input type="time" id="time" placeholder="Select Time"/>
+                    </div>
+
+                     <div class="reason">
+                        <label>Reason</label><br>
+                        <input id="reason" type="text"/>    
+                    </div>
+
+                    </div>
+                    <!-- ------------buttons------------ -->
+                    <div class="buttons">
+                    <button type="button" id="cancel" >Cancel</button>
+                    <button class="submit" type="submit">Submit</button>
+                    </div>
+                </form>
+        
+    </div>
+    <script src="./index.js"></script>
+</body>
+</html>
