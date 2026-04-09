@@ -272,6 +272,10 @@ form b{
     display: block;
 }
 
+.inp{
+    border: 1px solid red;
+}
+
 .buttons{
     height:15%;
     width:100%;

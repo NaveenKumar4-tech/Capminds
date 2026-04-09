@@ -65,8 +65,7 @@ function Calender(year,month){
 
                     appointments.forEach(app => {
                     let badge = document.createElement("span")
-                    badge.innerText = app.docname
-
+                    badge.innerText = `${app.docname} ${app.username} ${app.time} ` 
                     badge.classList.add("doctor-badge") 
 
                     cell.appendChild(badge)
@@ -172,58 +171,47 @@ let editIndex = -1
 const tableBody = id("tablebody")
 
 // ---------- form submit ----------
+const inputs = [
+    id("name"),
+    id("doc-name"),
+    id("hospital"),
+    id("speciality"),
+    id("reason"),
+    id("date"),
+    id("time")
+]
+
+inputs.forEach(el => {
+    el.addEventListener("input", () => {
+        let value = el.value
+
+        // trim only for text inputs
+        if(el.type !== "date" && el.type !== "time"){
+            value = value.trim()
+        }
+
+        if(value === ""){
+            el.classList.add("inp")
+        } else {
+            el.classList.remove("inp")
+        }
+    })
+})
+
+
+// ---------- FORM SUBMIT ----------
 form.addEventListener("submit", function(e){
     e.preventDefault()
 
-    const username = id("name").value.trim()
-    const docname = id("doc-name").value.trim()
-    const hospital = id("hospital").value.trim()
-    const speciality = id("speciality").value.trim()
-    const reason = id("reason").value.trim()
-    const date = id("date").value
-    const time = id("time").value
+    const username = id("name"),
+        docname =  id("doc-name"),
+        hospital = id("hospital"),
+        speciality = id("speciality"),
+        reason = id("reason"),
+        date = id("date"),
+        time = id("time")
 
-// ----------- basic validation ------------
-
-    if(username === ""){
-        alert("Patient name is required")
-        return
-    }
-
-    if(docname === ""){
-        alert("Doctor name is required")
-        return
-    }
-
-    if(hospital === ""){
-        alert("Hospital is required")
-        return
-    }
-
-    if(speciality === ""){
-        alert("Speciality is required")
-        return
-    }
-
-    if(reason === ""){
-        alert("Reason is required")
-        return
-    }
-
-    if(date === ""){
-        alert("Please select a date")
-        return
-    }
-
-    if(time === ""){
-        alert("Please select a time")
-        return
-    }
-
-    // ----------- data saving ------------
-
-    const data = {
-        id: Date.now(),
+    const fields = [
         username,
         docname,
         hospital,
@@ -231,6 +219,38 @@ form.addEventListener("submit", function(e){
         reason,
         date,
         time
+    ]
+
+    let isValid = true
+
+    fields.forEach(el => {
+        let value = el.value
+
+        if(el.type !== "date" && el.type !== "time"){
+            value = value.trim()
+        }
+
+        if(value === ""){
+            el.classList.add("inp")
+            isValid = false
+        } else {
+            el.classList.remove("inp")
+        }
+    })
+
+    // ❗ stop if invalid
+    if(!isValid) return
+
+    // ---------- DATA ----------
+    const data = {
+        id: Date.now(),
+        username: username.value.trim(),
+        docname: docname.value.trim(),
+        hospital: hospital.value.trim(),
+        speciality: speciality.value.trim(),
+        reason: reason.value.trim(),
+        date: date.value,
+        time: time.value
     }
 
     if(editIndex === -1){
@@ -241,14 +261,15 @@ form.addEventListener("submit", function(e){
     }
 
     localStorage.setItem("appointments", JSON.stringify(userdata))
+
+    // ---------- UI ----------
     displaydata()
-    Calender(year,thismonth)
+    Calender(year, thismonth)
 
     form.reset()
     form.classList.remove("form-show")
     overlay.classList.remove("overlay-show")
 })
-
 // ---------- display ----------
 function displaydata(data = userdata){
     tableBody.innerHTML = ""
