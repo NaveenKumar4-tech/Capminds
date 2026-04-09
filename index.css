@@ -427,6 +427,7 @@ td {
 .doctor-badge{
   display: block;
   height: 30px;
+  width:100%;
   background-color: green;
   color: white;
   font-size: 10px;
